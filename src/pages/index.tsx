@@ -19,6 +19,16 @@ export default function Home() {
   // 확장된 학생 ID
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(null);
 
+  // 학생 목록을 랜덤하게 섞는 함수
+  const shuffleArray = (array: Student[]) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
+  // 페이지 로드 시 학생 목록을 랜덤하게 섞음
+  useEffect(() => {
+    setFilteredStudents(shuffleArray(students));
+  }, []);
+
   // 태그 클릭 처리
   const handleTagClick = (category: string, tag: string) => {
     setSelectedTags((prevTags) => {
@@ -90,12 +100,22 @@ export default function Home() {
     }, 50);
   };
 
+  // 태그 초기화 함수
+  const resetTags = () => {
+    setSelectedTags({
+      class: new Set<string>(),
+      categoryA: new Set<string>(),
+      categoryB: new Set<string>(),
+      categoryC: new Set<string>(),
+    });
+  };
+
   return (
     <>
       <div className="px-2 py-2 pb-12">
         <header className="mb-4">
-          <div className="filter-row mb-1 single-line">
-            <div className="left-content">
+          <div className="filter-row mb-1 single-line" style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
               <span className="filter-title">Class</span>
               {keywords.class.map((keyword) => (
                 <Tag
@@ -107,7 +127,9 @@ export default function Home() {
                 />
               ))}
             </div>
-            <div className="filter-title title">Communication Design (1): Short Story</div>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+              <div className="filter-title title">Communication Design (1): Short Story</div>
+            </div>
           </div>
           
           <div className="filters">
@@ -124,8 +146,15 @@ export default function Home() {
                   />
                 ))}
               </div>
+              <div className="right-content">
+                <Tag
+                  text="Reset"
+                  category="categoryA"
+                  isActive={false}
+                  onClick={resetTags}
+                />
+              </div>
             </div>
-            
             <div className="filter-row mb-1 single-line">
               <div className="left-content">
                 <span className="filter-title">Category B</span>
