@@ -1,0 +1,370 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+  --box-gap: 12px;
+  --box-size: calc(16.66% - var(--box-gap));
+  --expanded-box-size: calc(33.33% - var(--box-gap));
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.dashed-border {
+  border: 1px dotted #888;
+  border-radius: 0;
+  border-style: dotted;
+  border-width: 1px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  border-radius: 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px dotted transparent;
+  min-width: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.tag:hover {
+  opacity: 0.9;
+}
+
+.tag.active {
+  filter: brightness(0.7);
+}
+
+/* 팝업 내 태그는 활성화 상태여도 원래 색상 유지 */
+.popup-content .tag.active {
+  filter: none; /* 팝업창 내부의 태그는 필터 효과 제거 */
+}
+
+/* 태그 색상 다양하게 설정 - 클래스별 고정 색상 */
+/* class의 A.M.은 노란계열, P.M.은 하늘계열 - 길이 확장 없이 색상만 변경 */
+.bg-class.tag-index-1 { background-color: #FFDA44; border-color: #DAAA20; width: auto !important; } /* A.M. - 노란색 */
+.bg-class.tag-index-2 { background-color: #7BD3F7; border-color: #57AFDD; width: auto !important; } /* P.M. - 하늘색 */
+.bg-class.tag-index-3 { background-color: #6AC1E8; border-color: #4698BF; } /* 잠자다 - 하늘색 */
+.bg-class.tag-index-4 { background-color: #9BE8A8; border-color: #77C184; } /* 추무다 - 연한 녹색 */
+.bg-class.tag-index-5 { background-color: #D5A6FF; border-color: #B182DB; } /* 자르다 - 연한 보라 */
+.bg-class.tag-index-6 { background-color: #FF9E7A; border-color: #DB7A56; } /* 꿈 - 연한 주황 */
+.bg-class.tag-index-7 { background-color: #B5CCFF; border-color: #91A8DB; } /* 잇다 - 연한 파랑 */
+.bg-class.tag-index-8 { background-color: #FFB8D9; border-color: #DB94B5; } /* 집 - 연한 분홍 */
+.bg-class.tag-index-9 { background-color: #B4E4CA; border-color: #90C0A6; } /* 매듭 - 연한 청록 */
+.bg-class.tag-index-10 { background-color: #F4D1A6; border-color: #D0AD82; } /* 기타 - 베이지 */
+
+/* categoryA도 다양한 색상으로 */
+.bg-categoryA.tag-index-1 { background-color: #FDDA16; border-color: #D9B600; } /* 노란색 */
+.bg-categoryA.tag-index-2 { background-color: #FF8DC6; border-color: #DB69A2; } /* 춤추다 - 분홍색 */
+.bg-categoryA.tag-index-3 { background-color: #5DBCE6; border-color: #3998C2; } /* 잠자다 - 하늘색 */
+.bg-categoryA.tag-index-4 { background-color: #8CE69A; border-color: #68C276; } /* 녹색 */
+.bg-categoryA.tag-index-5 { background-color: #BE8CFF; border-color: #9A68DB; } /* 보라색 */
+.bg-categoryA.tag-index-6 { background-color: #FF9547; border-color: #DB7123; } /* 주황색 */
+.bg-categoryA.tag-index-7 { background-color: #7CAEFF; border-color: #588ADB; } /* 파란색 */
+.bg-categoryA.tag-index-8 { background-color: #FF8AD3; border-color: #DB66AF; } /* 분홍색 */
+.bg-categoryA.tag-index-9 { background-color: #80D6BA; border-color: #5CB296; } /* 청록색 */
+.bg-categoryA.tag-index-10 { background-color: #E8C078; border-color: #C49C54; } /* 황토색 */
+
+/* categoryB도 다양한 색상으로 */
+.bg-categoryB.tag-index-1 { background-color: #FFE566; border-color: #DBC142; } /* 노란색 */
+.bg-categoryB.tag-index-2 { background-color: #5FBEF0; border-color: #3B9ACC; } /* 하늘색 */
+.bg-categoryB.tag-index-3 { background-color: #E86464; border-color: #C44040; } /* 빨간색 */
+.bg-categoryB.tag-index-4 { background-color: #72D77F; border-color: #4EB35B; } /* 녹색 */
+.bg-categoryB.tag-index-5 { background-color: #C89BFF; border-color: #A477DB; } /* 보라색 */
+.bg-categoryB.tag-index-6 { background-color: #FF8F56; border-color: #DB6B32; } /* 주황색 */
+.bg-categoryB.tag-index-7 { background-color: #6D9CFF; border-color: #4978DB; } /* 파란색 */
+.bg-categoryB.tag-index-8 { background-color: #FF6BB7; border-color: #DB4793; } /* 분홍색 */
+.bg-categoryB.tag-index-9 { background-color: #70CAAF; border-color: #4CA68B; } /* 청록색 */
+.bg-categoryB.tag-index-10 { background-color: #D7B568; border-color: #B39144; } /* 황토색 */
+
+/* categoryC도 다양한 색상으로 */
+.bg-categoryC.tag-index-1 { background-color: #FBDD5B; border-color: #D7B937; } /* 노란색 */
+.bg-categoryC.tag-index-2 { background-color: #53C1E9; border-color: #2F9DC5; } /* 하늘색 */
+.bg-categoryC.tag-index-3 { background-color: #FF7CB2; border-color: #DB5890; } /* 모이다 - 분홍색 */
+.bg-categoryC.tag-index-4 { background-color: #66CC7A; border-color: #42A856; } /* 녹색 */
+.bg-categoryC.tag-index-5 { background-color: #B989FB; border-color: #9565D7; } /* 보라색 */
+.bg-categoryC.tag-index-6 { background-color: #FF8133; border-color: #DB5D0F; } /* 주황색 */
+.bg-categoryC.tag-index-7 { background-color: #5E90FB; border-color: #3A6CD7; } /* 파란색 */
+.bg-categoryC.tag-index-8 { background-color: #FF5EB0; border-color: #DB3A8C; } /* 분홍색 */
+.bg-categoryC.tag-index-9 { background-color: #60C3AB; border-color: #3C9F87; } /* 청록색 */
+.bg-categoryC.tag-index-10 { background-color: #D1AE60; border-color: #AD8A3C; } /* 황토색 */
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  justify-content: space-between;
+}
+
+.filter-row.single-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
+
+.filter-row .left-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+/* 모바일 화면에서 태그가 한 줄로 나오도록 조정 */
+@media (max-width: 768px) {
+  .filter-row.single-line {
+    overflow-x: auto; /* 가로 스크롤 허용 */
+    padding-bottom: 5px; /* 스크롤바 공간 확보 */
+    margin-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  }
+
+  .filter-row.single-line::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+  }
+  
+  .filter-row .left-content {
+    flex-wrap: nowrap; /* 줄바꿈 방지 */
+    width: 100%;
+    overflow-x: auto;
+    padding-right: 10px; /* 오른쪽 여유 공간 */
+    scrollbar-width: none;
+  }
+
+  .filter-row .left-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .filter-row .filter-title {
+    min-width: 60px; /* 모바일에서 카테고리 레이블 축소 */
+    font-size: 0.75rem;
+  }
+  
+  .filter-title.title {
+    display: none; /* 모바일에서는 타이틀 숨기기 */
+  }
+  
+  .filter-row .tag {
+    white-space: nowrap; /* 태그 내용 줄바꿈 방지 */
+    margin-right: 4px;
+    margin-bottom: 2px;
+    padding: 1px 4px;
+    font-size: 0.75rem;
+    flex-shrink: 0; /* 태그 크기 축소 방지 */
+  }
+  
+  /* 모바일에서 헤더와 내용 간격 조정 */
+  .mb-4 {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* 태그 행 간격 축소 */
+  .mb-1 {
+    margin-bottom: 0.1rem !important;
+  }
+}
+
+/* 작은 모바일 화면에 대한 추가 최적화 */
+@media (max-width: 480px) {
+  /* 헤더와 필터 레이아웃 최적화 */
+  .filter-row .filter-title {
+    min-width: 50px;
+    font-size: 0.7rem;
+  }
+  
+  .filter-row .tag {
+    font-size: 0.7rem;
+    padding: 1px 3px;
+    margin-right: 3px;
+  }
+  
+  /* 더 작은 간격 */
+  .px-2 {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+  
+  /* 푸터 크기 조정 */
+  .footer {
+    font-size: 0.65rem;
+    padding: 8px 0;
+  }
+}
+
+.filter-title {
+  min-width: 80px;
+  font-weight: normal;
+  font-size: 0.875rem;
+}
+
+.filter-row .left-content .filter-title {
+  min-width: auto;
+  margin-right: 8px;
+}
+
+.filter-title.title {
+  font-weight: normal;
+  margin-left: auto;
+}
+
+.filters {
+  margin-top: 0.2rem;
+}
+
+/* 학생 그리드 */
+.student-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 -5px; /* 양쪽 여백 조정 */
+  justify-content: flex-start; /* 좌측 정렬로 변경 */
+}
+
+.box-item {
+  padding: 5px;
+  box-sizing: border-box;
+  flex: 0 0 calc(16.666% - 10px); /* 기본적으로 한 줄에 6개 */
+  margin: 5px;
+  /* 아이템 사이 간격 균등하게 */
+  max-width: calc(16.666% - 10px);
+}
+
+/* 반응형 레이아웃 */
+@media (max-width: 1400px) {
+  .box-item {
+    flex: 0 0 calc(20% - 10px); /* 화면이 작아지면 5개씩 */
+    max-width: calc(20% - 10px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .box-item {
+    flex: 0 0 calc(25% - 10px); /* 더 작아지면 4개씩 */
+    max-width: calc(25% - 10px);
+  }
+}
+
+@media (max-width: 800px) {
+  .box-item {
+    flex: 0 0 calc(33.333% - 10px); /* 모바일에서는 3개씩 */
+    max-width: calc(33.333% - 10px);
+  }
+}
+
+@media (max-width: 500px) {
+  .box-item {
+    flex: 0 0 calc(50% - 10px); /* 작은 모바일에서는 2개씩 */
+    max-width: calc(50% - 10px);
+  }
+}
+
+/* 학생 박스 */
+.student-box {
+  width: 100%;
+  min-height: 120px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* 학생 박스 호버 효과 추가 */
+.student-box:hover {
+  background-color: #FFF8D6 !important; /* 연한 노란색으로 변경 */
+  border-color: #FFD700; /* 테두리 색상도 변경 */
+}
+
+.student-box-name {
+  font-weight: normal;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.student-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* 팝업 오버레이 */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+/* 팝업 콘텐츠 */
+.popup-content {
+  background: white;
+  padding: 30px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 101;
+}
+
+.student-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.student-info-row .student-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.student-story {
+  margin-top: 0.75rem;
+  padding-left: 0;
+  column-count: 1;
+}
+
+/* 푸터 스타일 수정 - 항상 화면 하단에 고정 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 0.75rem;
+  color: #888;
+  z-index: 50;
+  border-top: 1px dotted #ddd;
+} 
