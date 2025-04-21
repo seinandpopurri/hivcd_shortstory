@@ -114,39 +114,76 @@ export default function Home() {
     <>
       <div className="px-2 py-2 pb-12">
         <header className="mb-4">
-          <div className="filter-row mb-1 single-line" style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="filter-row mb-1 single-line desktop-only">
+            <div className="left-content">
               <span className="filter-title">Class</span>
-              {keywords.class.map((keyword) => (
-                <Tag
-                  key={`class-${keyword}`}
-                  text={keyword}
-                  category="class"
-                  isActive={selectedTags.class.has(keyword)}
-                  onClick={() => handleTagClick('class', keyword)}
-                />
-              ))}
+              <div className="tag-wrapper">
+                {keywords.class.map((keyword) => (
+                  <Tag
+                    key={`class-${keyword}`}
+                    text={keyword}
+                    category="class"
+                    isActive={selectedTags.class.has(keyword)}
+                    onClick={() => handleTagClick('class', keyword)}
+                  />
+                ))}
+              </div>
             </div>
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <div className="title-container">
               <div className="filter-title title">Communication Design (1): Short Story</div>
             </div>
           </div>
           
+          {/* 모바일 전용 헤더 - 순서 재배치 */}
+          <div className="mobile-only">
+            <div className="filter-row mb-1 single-line mobile-header">
+              <div className="mobile-title">
+                <span className="filter-title title">Communication Design (1): Short Story</span>
+              </div>
+              <div className="mobile-reset">
+                <Tag
+                  text="Reset"
+                  category="categoryA"
+                  isActive={false}
+                  onClick={resetTags}
+                />
+              </div>
+            </div>
+          </div>
+          
           <div className="filters">
+            <div className="filter-row mb-1 single-line mobile-only">
+              <div className="left-content">
+                <span className="filter-title">Class</span>
+                <div className="tag-wrapper">
+                  {keywords.class.map((keyword) => (
+                    <Tag
+                      key={`mobile-class-${keyword}`}
+                      text={keyword}
+                      category="class"
+                      isActive={selectedTags.class.has(keyword)}
+                      onClick={() => handleTagClick('class', keyword)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="filter-row mb-1 single-line">
               <div className="left-content">
                 <span className="filter-title">Category A</span>
-                {keywords.categoryA.map((keyword) => (
-                  <Tag
-                    key={`categoryA-${keyword}`}
-                    text={keyword}
-                    category="categoryA"
-                    isActive={selectedTags.categoryA.has(keyword)}
-                    onClick={() => handleTagClick('categoryA', keyword)}
-                  />
-                ))}
+                <div className="tag-wrapper">
+                  {keywords.categoryA.map((keyword) => (
+                    <Tag
+                      key={`categoryA-${keyword}`}
+                      text={keyword}
+                      category="categoryA"
+                      isActive={selectedTags.categoryA.has(keyword)}
+                      onClick={() => handleTagClick('categoryA', keyword)}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="right-content">
+              <div className="right-content desktop-only">
                 <Tag
                   text="Reset"
                   category="categoryA"
@@ -158,30 +195,34 @@ export default function Home() {
             <div className="filter-row mb-1 single-line">
               <div className="left-content">
                 <span className="filter-title">Category B</span>
-                {keywords.categoryB.map((keyword) => (
-                  <Tag
-                    key={`categoryB-${keyword}`}
-                    text={keyword}
-                    category="categoryB"
-                    isActive={selectedTags.categoryB.has(keyword)}
-                    onClick={() => handleTagClick('categoryB', keyword)}
-                  />
-                ))}
+                <div className="tag-wrapper">
+                  {keywords.categoryB.map((keyword) => (
+                    <Tag
+                      key={`categoryB-${keyword}`}
+                      text={keyword}
+                      category="categoryB"
+                      isActive={selectedTags.categoryB.has(keyword)}
+                      onClick={() => handleTagClick('categoryB', keyword)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
             
             <div className="filter-row mb-1 single-line">
               <div className="left-content">
                 <span className="filter-title">Category C</span>
-                {keywords.categoryC.map((keyword) => (
-                  <Tag
-                    key={`categoryC-${keyword}`}
-                    text={keyword}
-                    category="categoryC"
-                    isActive={selectedTags.categoryC.has(keyword)}
-                    onClick={() => handleTagClick('categoryC', keyword)}
-                  />
-                ))}
+                <div className="tag-wrapper">
+                  {keywords.categoryC.map((keyword) => (
+                    <Tag
+                      key={`categoryC-${keyword}`}
+                      text={keyword}
+                      category="categoryC"
+                      isActive={selectedTags.categoryC.has(keyword)}
+                      onClick={() => handleTagClick('categoryC', keyword)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

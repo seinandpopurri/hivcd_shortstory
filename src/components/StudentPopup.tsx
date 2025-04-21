@@ -37,7 +37,7 @@ const StudentPopup: React.FC<StudentPopupProps> = ({ student, selectedTags, onCl
     <div className="popup-overlay" onClick={handleOverlayClick}>
       <div className="popup-content">
         <div className="student-info-row mb-4">
-          <h2 className="student-name" style={{ fontSize: '1rem' }}>{student.name}</h2>
+          <h2 className="student-name">{student.name}</h2>
           <div className="student-tags">
             <Tag 
               text={student.class} 

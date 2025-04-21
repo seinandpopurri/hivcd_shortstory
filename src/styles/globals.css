@@ -131,37 +131,107 @@ body {
 
 /* 모바일 화면에서 태그가 한 줄로 나오도록 조정 */
 @media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    width: 100%;
+    padding-top: 1px; /* 헤더 전체를 약간 아래로 내림 */
+  }
+  
+  .mobile-title {
+    text-align: left;
+    width: auto;
+    display: flex;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    padding-top: 0; /* 패딩 제거 */
+  }
+  
+  .mobile-title .filter-title.title {
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    width: auto;
+    margin-top: -3px; /* 더 위로 올림 */
+    line-height: 1; /* 줄 간격 줄임 */
+  }
+  
+  .mobile-reset {
+    margin-left: auto;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-top: 3px; /* 리셋 버튼 위치 조정 */
+  }
+  
+  .mobile-reset .tag {
+    margin-right: 0;
+    font-size: 0.7rem;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  
   .filter-row.single-line {
     overflow-x: auto; /* 가로 스크롤 허용 */
-    padding-bottom: 5px; /* 스크롤바 공간 확보 */
-    margin-bottom: 0.5rem;
+    padding-bottom: 2px; /* 스크롤바 공간 확보 */
+    margin-bottom: 0.15rem;
     -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 */
     scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    flex-wrap: wrap; /* 필요한 경우 줄바꿈 허용 */
   }
-
+  
   .filter-row.single-line::-webkit-scrollbar {
     display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
   }
   
+  /* 모바일에서 태그 시작 위치 통일을 위한 스타일 */
   .filter-row .left-content {
-    flex-wrap: nowrap; /* 줄바꿈 방지 */
-    width: 100%;
-    overflow-x: auto;
-    padding-right: 10px; /* 오른쪽 여유 공간 */
-    scrollbar-width: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    width: auto;
+    flex: 1;
+    padding-right: 5px; /* 오른쪽 여유 공간 */
   }
-
-  .filter-row .left-content::-webkit-scrollbar {
-    display: none;
+  
+  .filter-row .right-content {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
   }
   
   .filter-row .filter-title {
-    min-width: 60px; /* 모바일에서 카테고리 레이블 축소 */
+    min-width: 80px; /* 모바일에서 카테고리 레이블 고정 너비 */
+    width: 80px;
     font-size: 0.75rem;
+    margin-right: 5px;
+    display: inline-block;
   }
   
-  .filter-title.title {
-    display: none; /* 모바일에서는 타이틀 숨기기 */
+  /* 태그 줄바꿈 시 정렬 유지 */
+  .filter-row .tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 85px; /* 레이블 너비 + 여백 */
+    margin-left: -85px; /* 레이블 너비 + 여백 (상쇄) */
+    width: calc(100% - 85px); /* 전체 너비에서 레이블 너비 제외 */
+  }
+  
+  /* 두 번째 줄부터의 태그도 같은 위치에서 시작하도록 */
+  .filter-row .tag-wrapper .tag {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  
+  .filter-row .left-content .tag:first-of-type {
+    margin-left: 0;
   }
   
   .filter-row .tag {
@@ -173,22 +243,49 @@ body {
     flex-shrink: 0; /* 태그 크기 축소 방지 */
   }
   
-  /* 모바일에서 헤더와 내용 간격 조정 */
-  .mb-4 {
-    margin-bottom: 0.5rem !important;
+  /* 모든 카테고리 행에서 레이블과 태그 간격 일관성 유지 */
+  .filter-row.single-line .left-content {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
   }
   
-  /* 태그 행 간격 축소 */
-  .mb-1 {
-    margin-bottom: 0.1rem !important;
+  /* 모바일에서 헤더와 내용 간격 조정 */
+  .mb-4 {
+    margin-bottom: 0.4rem !important;
   }
+  
+  /* 태그 행 간격 더 축소 */
+  .mb-1 {
+    margin-bottom: 0.15rem !important;
+  }
+  
+  .title-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+.reset-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 /* 작은 모바일 화면에 대한 추가 최적화 */
 @media (max-width: 480px) {
   /* 헤더와 필터 레이아웃 최적화 */
   .filter-row .filter-title {
-    min-width: 50px;
+    min-width: 70px;
+    width: 70px;
     font-size: 0.7rem;
   }
   
@@ -198,16 +295,39 @@ body {
     margin-right: 3px;
   }
   
+  /* 작은 화면에서 태그 시작 위치 조정 */
+  .filter-row .tag-wrapper {
+    padding-left: 75px; /* 레이블 너비 + 여백 */
+    margin-left: -75px; /* 레이블 너비 + 여백 (상쇄) */
+    width: calc(100% - 75px); /* 전체 너비에서 레이블 너비 제외 */
+  }
+  
   /* 더 작은 간격 */
   .px-2 {
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
   }
   
+  /* 타이틀 크기 조정 */
+  .filter-title.title {
+    font-size: 0.65rem;
+  }
+  
   /* 푸터 크기 조정 */
   .footer {
     font-size: 0.65rem;
     padding: 8px 0;
+  }
+  
+  /* 작은 화면에서의 제목 스타일 */
+  .mobile-title .filter-title.title {
+    font-size: 0.65rem;
+    margin-top: -2px; /* 작은 화면에서는 살짝만 올림 */
+  }
+  
+  /* 작은 화면에서의 리셋 버튼 위치 */
+  .mobile-reset {
+    margin-top: 2px;
   }
 }
 
@@ -225,6 +345,12 @@ body {
 .filter-title.title {
   font-weight: normal;
   margin-left: auto;
+}
+
+.title-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .filters {
@@ -304,7 +430,7 @@ body {
 
 .student-name {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 /* 팝업 오버레이 */
@@ -348,6 +474,45 @@ body {
   gap: 0.5rem;
 }
 
+/* 모바일 환경에서 팝업 스타일 조정 */
+@media (max-width: 768px) {
+  .student-info-row {
+    align-items: flex-start;
+  }
+  
+  .student-info-row .student-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  
+  .student-info-row .student-tags {
+    width: 60%;
+  }
+}
+
+/* 작은 모바일 화면에서 더 세밀한 조정 */
+@media (max-width: 480px) {
+  .student-info-row {
+    align-items: flex-start;
+  }
+  
+  .student-info-row .student-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 8px;
+    flex-shrink: 0;
+    max-width: 40%;
+  }
+  
+  .student-info-row .student-tags {
+    width: 55%;
+  }
+}
+
 .student-story {
   margin-top: 0.75rem;
   padding-left: 0;
@@ -367,4 +532,41 @@ body {
   color: #888;
   z-index: 50;
   border-top: 1px dotted #ddd;
+}
+
+/* 태그 래퍼 기본 스타일 - 데스크탑 */
+.tag-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  /* 모바일에서 태그 시작 위치 통일을 위한 스타일 */
+  .filter-row .left-content {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+  
+  /* 태그 줄바꿈 시 정렬 유지 */
+  .filter-row .tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 85px; /* 레이블 너비 + 여백 */
+    margin-left: -85px; /* 레이블 너비 + 여백 (상쇄) */
+    width: calc(100% - 85px); /* 전체 너비에서 레이블 너비 제외 */
+  }
+  
+  /* 두 번째 줄부터의 태그도 같은 위치에서 시작하도록 */
+  .filter-row .tag-wrapper .tag {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+}
+
+/* 데스크탑 버전 리셋 버튼 컨테이너 */
+.right-content {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
 } 
