@@ -154,7 +154,7 @@ body {
   
   .mobile-title .filter-title.title {
     text-align: left;
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* 태그 레이블과 동일한 크기로 설정 */
     font-weight: normal;
     margin: 0;
     padding: 0;
@@ -321,7 +321,7 @@ body {
   
   /* 작은 화면에서의 제목 스타일 */
   .mobile-title .filter-title.title {
-    font-size: 0.65rem;
+    font-size: 0.7rem; /* 작은 화면에서 태그 레이블과 동일한 크기로 설정 */
     margin-top: -2px; /* 작은 화면에서는 살짝만 올림 */
   }
   
